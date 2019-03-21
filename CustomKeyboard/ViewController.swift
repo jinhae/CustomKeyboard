@@ -10,9 +10,37 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tf_textView: PinTextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        
+    }
+    
+    @IBAction func btnAction(_ sender: Any) {
+        self.view.endEditing(true)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let guide = self.view.safeAreaLayoutGuide
+        let height = guide.layoutFrame.size.height
+        
+        print(guide.debugDescription)
+        print("height \(height)")
+        print("full \(self.view.frame.height)")
+        
+    }
+    @objc func bt1Action(sender:UIButton){
+        
+        
+        
     }
 
 

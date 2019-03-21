@@ -12,6 +12,9 @@
 		1EF72EAC22406ADB00561869 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF72EAA22406ADB00561869 /* Main.storyboard */; };
 		1EF72EAE22406ADE00561869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF72EAD22406ADE00561869 /* Assets.xcassets */; };
 		1EF72EB122406ADE00561869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF72EAF22406ADE00561869 /* LaunchScreen.storyboard */; };
+		1EF72EBB2240749800561869 /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF72EBA2240749800561869 /* NumericKeyboard.swift */; };
+		1EF72EBD22408CEB00561869 /* NumericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF72EBC22408CEB00561869 /* NumericButton.swift */; };
+		1EF72EBF2240C97000561869 /* PinTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF72EBE2240C97000561869 /* PinTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		1EF72EAD22406ADE00561869 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EF72EB022406ADE00561869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EF72EB222406ADE00561869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EF72EBA2240749800561869 /* NumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
+		1EF72EBC22408CEB00561869 /* NumericButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericButton.swift; sourceTree = "<group>"; };
+		1EF72EBE2240C97000561869 /* PinTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				1EF72EAD22406ADE00561869 /* Assets.xcassets */,
 				1EF72EAF22406ADE00561869 /* LaunchScreen.storyboard */,
 				1EF72EB222406ADE00561869 /* Info.plist */,
+				1EF72EBA2240749800561869 /* NumericKeyboard.swift */,
+				1EF72EBC22408CEB00561869 /* NumericButton.swift */,
+				1EF72EBE2240C97000561869 /* PinTextField.swift */,
 			);
 			path = CustomKeyboard;
 			sourceTree = "<group>";
@@ -135,7 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF72EBB2240749800561869 /* NumericKeyboard.swift in Sources */,
+				1EF72EBD22408CEB00561869 /* NumericButton.swift in Sources */,
 				1EF72EA922406ADB00561869 /* ViewController.swift in Sources */,
+				1EF72EBF2240C97000561869 /* PinTextField.swift in Sources */,
 				1EF72EA722406ADB00561869 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
