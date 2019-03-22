@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var tf_textView: PinTextField!
+    @IBOutlet weak var tf_textView: PINTextField!
     
     
     override func viewDidLoad() {
@@ -19,10 +19,12 @@ class ViewController: UIViewController {
         
         
         
+        
+        
     }
     
     @IBAction func btnAction(_ sender: Any) {
-        self.view.endEditing(true)
+        self.view.endEditing(true)        
         
     }
     
@@ -42,7 +44,6 @@ class ViewController: UIViewController {
         
         
     }
-
-
+    
 }
 

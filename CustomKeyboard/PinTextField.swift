@@ -8,50 +8,74 @@
 
 import UIKit
 
-class PinTextField: UITextField, UITextFieldDelegate{
-
+@IBDesignable
+class PINTextField: UITextField{
+    
+    
+    
+    @IBInspectable var validColor: UIColor = #colorLiteral(red: 0.9137254902, green: 0.06850343797, blue: 0.2887741191, alpha: 1)
+    @IBInspectable var invalidColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    
+    @IBInspectable var digit: Int = 6
+    @IBInspectable var imageSize:CGFloat = 0.8
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        guard let width   = UIApplication.shared.windows.last?.frame.width else {
-            return
-        }
-        guard let height  = UIApplication.shared.windows.last?.frame.height else {
-            return
-        }
+        
+        guard let width   = UIApplication.shared.windows.last?.frame.width else {return}
+        guard let height  = UIApplication.shared.windows.last?.frame.height else {return}
         
         
-        self.delegate = self
+        self.inputView = PINKeyboard(frame: CGRect(x: 0, y: 0, width: width, height: height / 3), targetTextField: self)
         
-        self.inputView = NumericKeyboard(frame: CGRect(x: 0, y: 0, width: width, height: height / 3))
+        self.addObserver(self, forKeyPath: "text", options: [.new, .old], context: nil)
         
-//
-//        let test = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-//        test.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         
-        let test2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        test2.backgroundColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
-        self.addSubview(test2)
         
-    }
-    
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        self.inputView?.reloadInputViews()
+        self.textColor = UIColor.clear
+        self.tintColor = UIColor.clear
         
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("end editing")
-    }
-    
 
-//     Only override draw() if you perform custom drawing.
-//     An empty implementation adversely affects performance during animation.
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "text"{
+            let currentTf = (object as? PINTextField)!
+            if (currentTf.text?.count)! > self.digit{
+                currentTf.text? = change![NSKeyValueChangeKey.oldKey] as! String
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
+            self.setNeedsDisplay()
+            print(currentTf.text!)
+        }
+    }
+   
+
     override func draw(_ rect: CGRect) {
         
+        let pinCharImageFrameWidth  = (rect.width / CGFloat(self.digit))
+        let pinCharImageFrameHeight = pinCharImageFrameWidth
+        
+        let pinCharImageWidth = pinCharImageFrameWidth * self.imageSize
+        let pinCharImageHeight = pinCharImageWidth
+        
+        let pinCharImageFrameCenterX = pinCharImageFrameWidth / 2
+        let pinCharImageFrameCenterY = pinCharImageFrameHeight / 2
+        
+        let pinCharImageX = pinCharImageFrameCenterX - (pinCharImageWidth / 2)
+        let pinCharImageY = pinCharImageFrameCenterY - (pinCharImageHeight / 2)
+        
+        for index in 0..<self.digit{
+            let path = UIBezierPath.init(ovalIn: CGRect(x: pinCharImageX  + (pinCharImageFrameWidth * CGFloat(index)), y: pinCharImageY, width: pinCharImageWidth , height: pinCharImageHeight))
+            if index < (self.text?.count)!{
+                self.validColor.setFill()
+            }else {
+                self.invalidColor.setFill()
+            }
+            
+            path.fill()
+            path.close()
+        }
     }
- 
-
 }

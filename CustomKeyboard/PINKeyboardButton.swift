@@ -8,64 +8,42 @@
 
 import UIKit
 
-
-
-
-
-@IBDesignable
-class NumericButton: UIButton {
-    public var index: String = ""
-    public var embededData: String = ""
-    public var isNumericButton = true
+class PINKeyboardButton: UIButton {
     
-    @IBInspectable public var buttonColor: UIColor = UIColor.clear
-    
-   
-    
-//    let impact = UIImpactFeedbackGenerator() // 1
-    let impact = UIImpactFeedbackGenerator(style: .medium)
-    let impact2 = UIImpactFeedbackGenerator(style: .light)
+    public var buttonColor: UIColor = UIColor.clear
     
     
-    let notification = UINotificationFeedbackGenerator()
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("TouchBegin")
-        impact.impactOccurred()
-        self.alpha = 0.5
+    public var title: String {
+        set(newValue){
+            self.setTitle(newValue, for: .normal)
+            self.backgroundColor = UIColor.clear
+            self.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+            
+        
+        }
+        get{
+            guard let title = self.currentTitle else { return "" }
+            return title
+        }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.alpha = 1.0
-        impact2.impactOccurred()
-    }
-    
-    
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         
-        if isNumericButton{
-            
-            let bounds = CGRect.init(x: 1.5, y: 1.5, width: self.frame.width - 3.0, height: self.frame.height - 3.0)
-            let path = UIBezierPath(roundedRect: bounds,
-                                    byRoundingCorners: [.allCorners],
-                                    cornerRadii: CGSize(width: 5.0, height: 5.0))
-            
-//            buttonColor.setFill()
-            self.backgroundColor = UIColor.clear
-            
-            #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).setFill()
-            #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
-            //086AB6
-            path.fill()
-            path.lineWidth = 0.1
-            
-            
-            path.stroke()
-        }else{
-            self.drawDeleteButton(rect)
-        }
+        let bounds = CGRect.init(x: 1.5, y: 1.5, width: self.frame.width - 3.0, height: self.frame.height - 3.0)
+        let path = UIBezierPath(roundedRect: bounds,
+                                byRoundingCorners: [.allCorners],
+                                cornerRadii: CGSize(width: 5, height: 5))
+        
+        
+        buttonColor.setFill()
+        #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
+        
+        path.fill()
+        path.lineWidth = 0.5
+        
+        
+        path.stroke()
+        
         
     }
     
@@ -74,8 +52,6 @@ class NumericButton: UIButton {
         
         let midX = rect.midX + 5
         let midY = rect.midY
-        
-        
         
         let p1_1    = CGPoint(x: midX - 28, y: midY - 3)
         let p1      = CGPoint(x: midX - 30, y: midY)
@@ -136,10 +112,6 @@ class NumericButton: UIButton {
         #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
         aPath.stroke()
       
-        
-        
-        
-
     }
  
 
